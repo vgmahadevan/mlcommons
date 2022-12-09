@@ -31,9 +31,6 @@ rivanna support staff.
 If you have executed this step previously, you only have to say 
 
 ```bash
-module purge
-module load anaconda
-source activate python310
 source ~/ENV3/bin/activate
 ```
 
@@ -72,14 +69,8 @@ export PROJECT_DIR=/scratch/$USER
 mkdir -p ${PROJECT_DIR}
 cd ${PROJECT_DIR}
 git clone ssh://git@github.com/laszewsk/mlcommons.git
-git checkout main
 cd mlcommons/benchmarks/cloudmask/experiments/rivanna
 ```
-
-In case you would like to have a different branch other than
-main, please use the name of the branch in the `git checkout`
-command.
-
 ## 3. Obtaining the data
 
 Next we obtain the data. The command uses an aws call to download both
@@ -144,16 +135,6 @@ estimate while using some predefined model as specified in our yaml file.
 |     50 |       ??? |     ??? |
 |    100 |       ??? |     ??? |
 
-V100
-
-| Epochs | Time in s |        Time |
-|-------:|----------:|------------:|
-|      1 |      2600 |   43m 20s   |
-|     10 |      4330 | 1hr 12m 10s |
-|     30 |      8240 | 2hr 17m 20s |
-|     50 |       ??? |     ???     |
-|    100 |       ??? |     ???     |
-
 An example on how to look at a slurm script (assuming we use an a100 in the YAML file) is 
 
 ```bash
@@ -166,7 +147,7 @@ To look at the yaml file for this experiment, use
 less project/card_name_a100_gpu_count_1_cpu_num_1_mem_64GB_repeat_1_epoch_10/config.yaml
 ```
 
-or simply call  which uses emacs to open both files from the first parameterized job.
+or simply call  which uses emacs to open both files from the firts parameterized job.
 
 ```bash
 make inspect
