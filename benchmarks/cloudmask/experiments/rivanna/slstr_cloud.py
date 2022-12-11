@@ -190,7 +190,7 @@ def cloud_training(args) -> None:
     # Running training on multiple GPUs
     StopWatch.start("training_on_mutiple_GPU")
     mirrored_strategy = tf.distribute.MirroredStrategy()
-    optimizer = tf.keras.optimizers.Adam(args['experiment.learning_rate'])
+    optimizer = tf.keras.optimizers.Adam(float(args['experiment.learning_rate']))
 
     with mirrored_strategy.scope():
         # create U-Net model
