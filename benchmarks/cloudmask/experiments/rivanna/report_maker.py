@@ -1,9 +1,13 @@
 import os
 import json
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
+#from matplotlib.backends.backend_pdf import PdfPages
+
+if not os.path.isdir("images"):
+    os.makedirs("images")
 
 project_dir = os.path.join(os.curdir, "project")
+images_dir = os.path.join(os.curdir, "images")
 
 for exp in os.listdir(project_dir):
     dir = os.path.join(project_dir, exp)
@@ -49,6 +53,7 @@ for exp in os.listdir(project_dir):
 
     plt.title(exp+"\n Training Loss and Accuracy")
     
+    plt.savefig(os.path.join(images_dir, exp+"_train.pdf"))
     # same as above but for validation set
 
     fig2, ax1 = plt.subplots()
@@ -66,11 +71,17 @@ for exp in os.listdir(project_dir):
 
     plt.title(exp+"\n Validation Loss and Accuracy")
 
+    plt.savefig(os.path.join(images_dir, exp+"_val.pdf"))
+
+    ''' If you want to save all the images into a single pdf
     pp = PdfPages(os.path.join(os.curdir, "graphs.pdf"))
     fig_nums = plt.get_fignums()
     figs = [plt.figure(n) for n in fig_nums]
     for fig in figs:
        fig.savefig(pp, format='pdf')
     pp.close()
+    '''
+
+    plt.close()
 
     
