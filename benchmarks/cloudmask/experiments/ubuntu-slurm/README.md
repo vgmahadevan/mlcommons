@@ -1,4 +1,4 @@
-# Parameterized jobs for rivanna with cloudmesh-sbatch
+# Parameterized jobs for Ubuntu slurm with cloudmesh-sbatch
 
 This version of cloudmask uses [cloudmesh-sbatch](https://github.com/cloudmesh/cloudmesh-sbatch) 
 to coordinate a parameter sweep over hyperparameters. It significantly simplifies managing
@@ -13,7 +13,7 @@ We assume if you like to use the automated report generated (under
 development) you have full version of latex installed
 
 ```bash
-module load texlive
+which pdflatex
 ```
 
 If you do not want to create the reports, please skip this step.
@@ -30,24 +30,17 @@ rivanna support staff.
 
 If you have executed this step previously, you only have to say 
 
-```bash
-module purge
-module load anaconda
-source activate python310
+
+```
 source ~/ENV3/bin/activate
 ```
 
 Otherwise, do the following:
 
 ```bash
-module purge
-module load anaconda
-
-conda create -y -n python310 python=3.10
-source activate python310
-
 python -m venv ~/ENV3
 source ~/ENV3/bin/activate
+pip install pip -U
 mkdir ~/cm
 cd ~/cm
 pip install cloudmesh-installer
@@ -55,25 +48,40 @@ cloudmesh-installer get sbatch
 cms help
 ```
 
+
 In either case your command promt will have the prefix `(ENV3)`.
 
 Note that we use two different python environment. 
 One for running sbatch, the other in whcih we run tensorflow, which will be 
 setup automatically in a later step.
 
+## 1.3 SLURM
+
+We assume you have SLURM installed
+
+```bash
+which sbatch
+whcih srun
+which squeue
+which scontrol
+```
+
+Instalation instruction are provided her ???. TODO: Locate the slurm instalation instruction, it may be in the cloudmesh-mpi repo???
+
 
 ## 2. Generating experiment configurations
 
 Choose a PROJECT_DIR where you like to install the code. Rivanna offers some temporary
-space in the /scratch directory. 
+space in the /project1 directory. Please replace this directory accordingly.
 
 ```bash
-export PROJECT_DIR=/scratch/$USER
+export PROJECT_DIR=/project1/$USER
 mkdir -p ${PROJECT_DIR}
 cd ${PROJECT_DIR}
 git clone ssh://git@github.com/laszewsk/mlcommons.git
 git checkout main
-cd mlcommons/benchmarks/cloudmask/experiments/rivanna
+cd mlcommons/benchmarks/cloudmask/experiments/ubuntu-sh
+pip install -r requirements
 ```
 
 In case you would like to have a different branch other than
@@ -98,6 +106,10 @@ The data is downloaded to
 ```
 $(PROJECT_DIR)/mlcommons/benchmarks/cloudmask/data
 ```
+
+unbuntu-sh Gregors machine 117m23.104s
+
+
 
 ## 4. Generate parameterized jobs
 

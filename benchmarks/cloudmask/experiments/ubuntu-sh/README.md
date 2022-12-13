@@ -1,4 +1,4 @@
-# Parameterized jobs for rivanna with cloudmesh-sbatch
+# Parameterized jobs for Ubuntu with cloudmesh-sbatch
 
 This version of cloudmask uses [cloudmesh-sbatch](https://github.com/cloudmesh/cloudmesh-sbatch) 
 to coordinate a parameter sweep over hyperparameters. It significantly simplifies managing
@@ -13,7 +13,7 @@ We assume if you like to use the automated report generated (under
 development) you have full version of latex installed
 
 ```bash
-module load texlive
+which pdflatex
 ```
 
 If you do not want to create the reports, please skip this step.
@@ -29,10 +29,6 @@ use for this project as it is the recommended version by the
 rivanna support staff.
 
 If you have executed this step previously, you only have to say 
-
-
-```
-```
 
 
 ```
