@@ -150,6 +150,11 @@ def cloud_inference(args) -> None:
         
         # Make 1D array
         groundTruth_flat = groundTruth.reshape(-1)
+
+        print("GroundTruth_flat:")
+        print(groundTruth_flat)
+        print("mask_flat:")
+        print(mask_flat)
        
         # Calculate hits between ground truth mask and the reconstructed mask
         accuracy = np.mean( groundTruth_flat == mask_flat)
